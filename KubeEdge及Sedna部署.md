@@ -1079,7 +1079,7 @@ edge的docker/daemon.json
         }
     },
     "registry-mirrors": ["xxxxx"],
-    "insecure-registries": ["xxxx"] # 设置的内网仓库
+    "insecure-registries": ["xxxx"] // 设置的内网仓库
 }
 
 ```
@@ -1095,7 +1095,7 @@ cloud的docker/daemon.json
     ],
     "registry-mirrors": [
         "https://b9pmyelo.mirror.aliyuncs.com",
-        "xxxx" # cloudflare 拉取 镜像
+        "xxxx" // cloudflare 拉取 镜像
     ],
     "default-runtime": "nvidia",
     "runtimes": {
