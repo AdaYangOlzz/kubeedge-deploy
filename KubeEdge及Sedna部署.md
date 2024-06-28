@@ -1065,6 +1065,53 @@ kubectl apply -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/v0.1
 >在边端 `vim /etc/kubeedge/config/edgecore.yaml`
 >将修改使得 `devicePluginEnabled: true`。本身这个插件是提供给 `k8s` 使用的，本地节点采用的 kubelet 进行管理，但是 kubeedge 采用 edgecore，打开 devicePluginEnabled 才可以
 
+
+
+edge的docker/daemon.json
+
+```json
+{
+    "default-runtime": "nvidia",
+    "runtimes": {
+        "nvidia": {
+            "path": "nvidia-container-runtime",
+            "runtimeArgs": []
+        }
+    },
+    "registry-mirrors": ["xxxxx"],
+    "insecure-registries": ["xxxx"] # 设置的内网仓库
+}
+
+```
+
+
+
+cloud的docker/daemon.json
+
+```json
+{
+    "exec-opts": [
+        "native.cgroupdriver=systemd"
+    ],
+    "registry-mirrors": [
+        "https://b9pmyelo.mirror.aliyuncs.com",
+        "xxxx" # cloudflare 拉取 镜像
+    ],
+    "default-runtime": "nvidia",
+    "runtimes": {
+        "nvidia": {
+            "args": [],
+            "path": "nvidia-container-runtime"
+        }
+    }
+}
+
+```
+
+
+
+
+
 #### 正常运行截图
 
 云端：
